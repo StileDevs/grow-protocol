@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["./lib/index.ts"],
+  "plugin": ["typedoc-plugin-merge-modules"],
+  "cname": "stiledevs.github.io",
+  "out": "docs",
+  "theme": "default",
+  "entryPointStrategy": "expand",
+  "readme": "./README.md",
+  "mergeModulesRenameDefaults": true,
+  "mergeModulesMergeMode": "project"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "grow-protocol",
+  "description": "A standalone packet builder for Growtopia",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "ava": {
+    "timeout": "3m",
+    "serial": true
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "homepage": "https://github.com/StileDevs/grow-items#readme",
+  "bugs": {
+    "url": "https://github.com/StileDevs/grow-items/issues"
+  },
+  "repository": "https://github.com/StileDevs/grow-items.git",
+  "scripts": {
+    "test": "ava",
+    "build": "pnpm run build:tsup",
+    "build:ts": "rimraf dist && tsc",
+    "build:tsup": "rimraf dist && tsup",
+    "docs": "rimraf docs && typedoc"
+  },
+  "keywords": [
+    "growtopia",
+    "items",
+    "parser"
+  ],
+  "author": {
+    "name": "StileDevs",
+    "email": "jadlion.dev@gmail.com",
+    "url": "https://stile.jad.li"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "ava": "^6.3.0",
+    "rimraf": "^5.0.10",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-merge-modules": "^7.0.0",
+    "typescript": "^5.8.3"
+  }
+}
