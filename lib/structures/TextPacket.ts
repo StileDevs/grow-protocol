@@ -1,15 +1,23 @@
 import { ExtendBuffer } from "../ExtendBuffer";
+import { TextParser } from "./TextParser";
 
 /**
  * TextPacket class to create text packets such as for actions or other uses.
  */
 export class TextPacket {
   /**
+   * The parsed text data as an object.
+   */
+  public parsed: TextParser;
+
+  /**
    * Creates a new TextPacket class
    * @param type The type of the packet.
    * @param strings An array of strings to include, they will be joined by a newline character. (`\n`)
    */
-  constructor(public type: number, public strings: string[]) {}
+  constructor(public type: number, public strings: string[]) {
+    this.parsed = new TextParser(strings.join("\n"));
+  }
 
   /**
    * Creates a TextPacket class.
@@ -18,6 +26,18 @@ export class TextPacket {
    */
   public static from(type: number, ...strings: string[]) {
     return new TextPacket(type, strings);
+  }
+
+  /**
+   * Creates a TextPacket from a TextParser object
+   * @param type The type of the packet
+   * @param parser The TextParser object
+   */
+  public static fromParser(type: number, parser: TextParser) {
+    const strings = parser.toString().split("\n");
+    const packet = new TextPacket(type, strings);
+    packet.parsed = parser;
+    return packet;
   }
 
   /**
@@ -36,9 +56,18 @@ export class TextPacket {
   }
 
   /**
+   * Updates the strings array based on the current state of the parsed object
+   */
+  public updateStrings(): void {
+    this.strings = this.parsed.toString().split("\n");
+  }
+
+  /**
    * Parses the TextPacket and converts it to an ExtendBuffer.
    */
   public parse() {
+    // Make sure strings reflect current parsed state
+    this.updateStrings();
     const str = this.strings.join("\n");
     const buffer = new ExtendBuffer(4 + str.length + 1); // + 1 for null terminator
 

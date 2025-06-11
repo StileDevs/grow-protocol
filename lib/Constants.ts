@@ -20,6 +20,32 @@ export enum PacketTypes {
 }
 
 /**
+ * Variant data types used in the game.
+ */
+export enum VariantTypes {
+  /** Represents no data */
+  NONE,
+
+  /** Represents an array of one floating point numbers*/
+  FLOAT_1,
+
+  /** Represents a string value */
+  STRING,
+
+  /** Represents an array of two floating point numbers */
+  FLOAT_2,
+
+  /** Represents an array of three floating point numbers */
+  FLOAT_3,
+
+  /** Represents a single unsigned integer */
+  UNSIGNED_INT,
+
+  /** Represents an single signed integers */
+  SIGNED_INT = 0x9
+}
+
+/**
  * Defines the different types of wearable clothing slots
  */
 export enum ClothTypes {
